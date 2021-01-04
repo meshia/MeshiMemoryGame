@@ -36,16 +36,23 @@ export class Store {
   }
 
   @action _initGame = (): void => {
-    playersArray.forEach(p => this.players.push(p));
+    playersArray.forEach((p) => this.players.push(p));
+    let newCardNamesArray = cardNames.concat(cardNames);
 
-    // @todo: create 2 cards of each `cardNames`, shuffle them, and push into `this.cards` array
-    // const card: ICard = {
-    //   id: '', // @todo: choose id pattern
-    //   type: name,
-    //   src: pics[name],
-    //   isRevealed: false,
-    //   isMatched: false
-    // };
+    for (var i = newCardNamesArray.length; i > 0; i-- ) {
+      const newCard = newCardNamesArray[i];
+        const card: ICard = {
+            id: 'card_' + i,
+            type: newCard,
+            src: pics[newCard],
+            isRevealed: false,
+            isMatched: false
+          };
+
+          const j = Math.floor(Math.random() * (i + 1));
+          this.cards.splice(j, 0, card);
+    };
+    
   };
 
   @action revealCard = (cardId: string): void => {
@@ -68,7 +75,7 @@ export class Store {
 
   checkMatch = reaction(
     () => this.revealedCount,
-    revealedCount => {
+    (revealedCount) => {
       /*
        * @todo: implement game logic from the point a card is revealed,
        *  you have the number of revealed cards

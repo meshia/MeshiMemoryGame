@@ -1,1 +1,33 @@
-/* @todo: implement styling  */
+// Google Fonts
+@import url(https://fonts.googleapis.com/css2?family=Montserrat&display=swap);
+
+$font-family: 'Montserrat', sans-serif;
+
+$base-black: black;
+$base-white: white;
+
+$base-background: $base-black;
+$base-text: $base-white;
+
+.App {
+  font-family: $font-family;
+  color: $base-text;
+  background: $base-background;
+  .board {
+    .cards-grid {
+      display:flex;
+      flex-wrap: wrap;
+      flex-direction: row;
+      .card {
+        width: 150px;
+          height: 150px;
+          border-radius: 10px;
+        img{
+          width:100%;
+          height:100%;          
+
+        }
+      }
+    }
+  }
+}
